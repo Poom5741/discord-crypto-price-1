@@ -21,8 +21,8 @@ var R = require("r-script-with-bug-fixes");
 // connect to Binance API using Node Binance API wrapper
 const binance = require('node-binance-api');
 binance.options({
-  'APIKEY':'<key>',
-  'APISECRET':'<secret>'
+  'APIKEY':'PApBCpsb2443jidNf1vUHmXxF19sP0uuZSXj5oYdDT3sqv45hxA8VAay9RWvK7AS',
+  'APISECRET':'7fo6BVC9VHD9gIeNAMi0w3FxkdnLcYZbyFXTKMY3ENWhgeyVCcryDU6txVBA9IZa'
 });
 
 
@@ -32,14 +32,13 @@ binance.options({
 // COMMAND FUNCTIONS
 //-----------------------
 //-----------------------
-
 // checks Binance market for price
 function check_price(market="BTCUSDT", channelID) {
-  binance.prices(function(error, ticker) {
+  binance.prices(function(error, ticker) {3
     if (ticker.msg != "Invalid symbol.") {
       bot.sendMessage({
         to: channelID,
-        message: market + " price: " + ticker[market] + markets
+        message: market + " price: " + ticker[market]
       });
     }
     else {
@@ -64,7 +63,7 @@ function check_price_USD(market="BTCUSDT", channelID) {
         exchange_rate = ticker["BNBUSDT"]
       }
 
-      price = exchange_rate * ticker[market]
+      price = ticker[market]
 
       bot.sendMessage({
         to: channelID,
@@ -412,4 +411,4 @@ function refreshMarkets() {
 // ---------------------
 
 // leave this if deploying to Heroku; otherwise need to comment out
-client.login(process.env.BOT_TOKEN)
+//client.login(process.env.BOT_TOKEN)
